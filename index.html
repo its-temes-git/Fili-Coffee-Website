@@ -1,149 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Audira</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header class="w-full">
-      <nav>
-        <img src="./images/logo.png" alt="" class="logo" />
-        <a href="#" class="btn radius">Buy Now</a>
-      </nav>
-    </header>
 
-    <div id="main" class="w-full">
-      <img src="./images/brown.png" alt="" id="headphone" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fili Coffee — Addis Ababa's Finest</title>
+  <meta name="description"
+    content="Fili Coffee — Crafted espresso and specialty drinks in Addis Ababa. Visit us at Mexico and Lafto." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Goldman:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-      <div id="section1">
-        <h1 class="heading">Modern Harmony</h1>
+<body>
+
+  <!-- ===== NAV ===== -->
+  <header id="navbar">
+    <nav class="w-full">
+      <a href="index.html" class="logo-text">Fili <span>Coffee</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="coffee.html">Coffee</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul>
+      <a href="coffee.html" class="btn radius" id="order-btn">Order Now</a>
+    </nav>
+  </header>
+
+  <!-- ===== FLOATING CUP ===== -->
+  <div id="main" class="w-full">
+    <!-- WebGL hero particle canvas -->
+    <canvas id="hero-canvas"></canvas>
+    <img src="./images/brown.png" alt="Fili Coffee signature cold brew" id="headphone" />
+
+    <!-- SECTION 1: HERO -->
+    <div id="section1">
+      <h1 class="heading" id="hero-heading">FRESHLY<br>BREWED.</h1>
+    </div>
+
+    <!-- SECTION 2: PURE ORIGIN -->
+    <div id="section2">
+      <div class="content-wrapper" data-animate="fade-up">
+        <h2 class="heading">Pure<br>Origin.</h2>
+        <p>
+          Every cup at Fili Coffee begins with a story — single-origin Ethiopian beans,
+          slow-roasted and pulled with precision. We don't just brew coffee, we craft an experience.
+        </p>
+        <a href="about.html" class="btn radius">Our Story</a>
       </div>
-
-      <div id="section2">
-        <div class="content-wrapper">
-          <h2 class="heading">True Carity</h2>
-          <p>
-            Engineered for clarity, comfort, and immersive sound — Audira
-            redefines your listening experience with style and performance
-            in perfect harmony.
-          </p>
-          <a href="" class="btn radius">Buy Now</a>
+      <div class="feature-wrapper">
+        <div class="feature-box radius" data-animate="card" data-delay="0">
+          <div class="feature-name">Single Origin</div>
+          <div class="feature-detail">Sourced directly from Ethiopian highlands — Yirgacheffe, Sidama, and Harrar.</div>
         </div>
-        <div class="feature-wrapper">
-          <div class="feature-box radius">
-            <div class="feature-name">Crystal-Clear Audio</div>
-            <div class="feature-detail">
-              Hear every detail with balanced bass and studio-quality mids
-              and highs.
-            </div>
-          </div>
-          <div class="feature-box radius">
-            <div class="feature-name">All-Day Comfort</div>
-            <div class="feature-detail">
-              Lightweight build with plush ear cushions and ergonomic fit.
-            </div>
-          </div>
-          <div class="feature-box radius">
-            <div class="feature-name">40+ Hour Battery Life</div>
-            <div class="feature-detail">
-              Long-lasting performance, wherever you go.
-            </div>
-          </div>
+        <div class="feature-box radius" data-animate="card" data-delay="100">
+          <div class="feature-name">Expert Roast</div>
+          <div class="feature-detail">Roasted in small batches to preserve every note of flavor in every cup.</div>
         </div>
-      </div>
-
-      <div id="section3">
-        <h2 class="heading">Masterbeat</h2>
-        <div class="content-wrapper">
-          <video
-            width="500"
-            height="auto"
-            autoplay
-            loop
-            muted
-            class="radius"
-          >
-            <source src="./images/video.mp4" type="video/mp4" />
-          </video>
-          <div class="content">
-            <p>
-              Crafted for the modern audiophile, Audira headphones deliver
-              sound so rich, it pulses through your senses. From crisp highs
-              to deep, rolling bass—you don’t just hear it, you feel it.
-            </p>
-            <p>
-              Whether you're in focus mode or free flow, the precision-tuned
-              audio adapts to your pace. With Masterbeat, music becomes your
-              personal soundtrack—bold, immersive, unforgettable.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div id="section4">
-        <img src="./images/img1.jpeg" alt="" class="img1 radius" />
-        <img src="./images/img2.jpeg" alt="" class="img2 radius" />
-        <img src="./images/img3.jpeg" alt="" class="img3 radius" />
-      </div>
-
-      <div id="section5">
-        <h2 class="heading">Top Picks</h2>
-        <div class="product-section">
-          <div class="product">
-            <img src="./images/green.png" alt="" />
-            <div class="name">Audira One</div>
-            <div class="price">₹4,499</div>
-          </div>
-          <div class="product">
-            <div class="name">Audira Pulse</div>
-            <div class="price">₹7,999</div>
-          </div>
-          <div class="product">
-            <img src="./images/black.png" alt="" />
-            <div class="name">Audira Max Pro</div>
-            <div class="price">₹11,499</div>
+        <div class="feature-box radius" data-animate="card" data-delay="200">
+          <div class="feature-name">Cold Brew Ready</div>
+          <div class="feature-detail">Steeped 16 hours for a smooth, bold cold brew that hits different every time.
           </div>
         </div>
       </div>
     </div>
 
-    <div id="section6" class="w-full">
-      <img src="./images/img4.jpg" class="radius" alt="" />
-      <div class="content-wrapper">
-        <h2 class="heading">Pure Escape</h2>
-        <p>
-          Step into a world where every note feels alive. Audira
-          headphones are engineered to create a sound experience that
-          surrounds you—deep, rich, and breathtaking.
-        </p>
-        <p>
-          Whether you're working, relaxing, or moving, our design blends
-          comfort and clarity for every lifestyle. You don’t just listen —
-          you feel the moment.
-        </p>
+    <!-- SECTION 3: ART OF POUR -->
+    <div id="section3">
+      <h2 class="heading" data-animate="heading">The Art of Pour</h2>
+      <div>
+        <video width="auto" height="550" autoplay loop muted class="radius">
+          <source src="./images/fili.mp4" type="video/mp4" />
+        </video>
+        <div class="content" data-animate="fade-up">
+          <p>At Fili Coffee, every pour is intentional. Our baristas train for months to perfect the balance between
+            extraction time, temperature, and pressure — because the difference between good and unforgettable is in the
+            details.</p>
+          <p>Whether it's a perfectly pulled espresso, a silky latte, or our signature cold brew over ice — each drink
+            is a craft. Come taste the difference that passion makes.</p>
+        </div>
       </div>
     </div>
 
-    <footer class="w-full">
-      <img src="./images/logo.png" alt="" class="logo" />
-      <div class="social">
-        <a href="#"><img src="./images/fb.png" alt="" /></a>
-        <a href="#"><img src="./images/insta.png" alt="" /></a>
-      </div>
-    </footer>
+    <!-- SECTION 4: PHOTO COLLAGE -->
+    <div id="section4" data-animate="fade-up">
+      <img
+        src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmXk5NsCmddaLTDe1rEuyAeS7x9gfIMI59awy0VLI6twmYR9XsEn27q3oO8wQv-xu0R7rEIbMJbdDOgpI-oYpAp7EJ_LIb6QnDxvW07guhuEtjEI6jDXRxIofZglO0t59VHQS8v9zw8abZy=w1200"
+        alt="Slow Drip Pour Over" class="img1 radius" />
+      <img
+        src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnftW1uKbozoCLo2rsfhAu6vARZgGRaMuKLn6PeDfM-uNgI1UE546UsRSZyQ55stZILd-3qs3PmcSnVtUcUSpOTBKOWjMV4henEqZj1EwyUTfLdHEzV2MctPWnO3bkL0hccBri7Hw=w1200"
+        alt="Latte Art Detail" class="img2 radius" />
+      <img
+        src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkHna7Cv-rc0qvZBNCCYPnVFuEIvKt0drlrq29Mdyz48hbE6q_h7wgKfaClO_HYhF8Uov8NxVKqzT_juXrh1jL83JzXvZu7JbhuSn8LB5ti8hDEc5NFrhepQuZw_lljMtrRVSfJ=w1200"
+        alt="Latte Art Detail" class="img3 radius" />
+      <img
+        src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmA_XNLCY1vu_3MoTeC77GS6C69-u0BrvU6F184qmqpAaIF0vIPrLaP4ZOJnU83445nfrQHVMnJJxpfDtScbM37Ddm4Nlq6072FiqPeAowtQxxE8mL0z3uDJnnlR0ubLhjwNnTJAg=w1200"
+        alt="Latte Art Detail" class="img4 radius" />
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script> 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-    <script src="https://unpkg.com/lenis@1.3.20/dist/lenis.min.js"></script>
-    <script src="main.js"></script>
-  </body>
+
+    </div>
+
+    <!-- SECTION 5: OUR MENU (3 highlight items) -->
+    <div id="section5">
+      <h2 class="heading" data-animate="heading">Our Menu</h2>
+      <div class="product-section">
+        <div class="product" data-animate="card" data-delay="0">
+          <img src="./images/strawberry_mojito.png" alt="Iced Latte" />
+          <div class="name">Iced Latte</div>
+          <div class="price">300 ETB</div>
+        </div>
+        <div class="product" data-animate="card" data-delay="100">
+          <div class="name">Cold Brew</div>
+          <div class="price">280 ETB</div>
+        </div>
+        <div class="product" data-animate="card" data-delay="200">
+          <img src="./images/iced_mocha_with_caramel.png" alt="Espresso Tonic" />
+          <div class="name">Espresso Tonic</div>
+          <div class="price">175 ETB</div>
+        </div>
+      </div>
+      <div class="section-cta" data-animate="fade-up">
+        <a href="coffee.html#full-menu" class="btn radius btn-outline">View Full Menu</a>
+      </div>
+    </div>
+
+  </div><!-- /#main -->
+
+  <!-- SECTION 5B: SIGNATURE ROASTS (highlights) -->
+  <div id="section5b" data-animate="section">
+    <div class="section5b-inner">
+      <div class="section-label" data-animate="fade-up" data-delay="0">Our Coffee</div>
+      <h2 class="heading" data-animate="heading">Signature Roasts</h2>
+      <p class="section-sub" data-animate="fade-up" data-delay="200">Three origins. Three stories. One obsession.</p>
+      <div class="roasts-grid">
+
+        <div class="roast-card radius" data-animate="card" data-delay="0">
+          <div class="roast-origin">Yirgacheffe · Light Roast</div>
+          <h3 class="roast-name">The Floral</h3>
+          <p class="roast-desc">Bright citrus, jasmine, and bergamot. A cup that tastes like a highland morning in
+            southern Ethiopia.</p>
+          <div class="roast-tags">
+            <span>Floral</span><span>Citrus</span><span>Tea-like</span>
+          </div>
+          <a href="coffee.html#yirgacheffe" class="roast-link">Learn More →</a>
+        </div>
+
+        <div class="roast-card radius" data-animate="card" data-delay="100">
+          
+          <div class="roast-origin">Sidama · Medium Roast</div>
+          <h3 class="roast-name">The Bold</h3>
+          <p class="roast-desc">Wild blueberry, dark chocolate, and a wine-like finish. Sidama's volcanic soil makes
+            every sip unforgettable.</p>
+          <div class="roast-tags">
+            <span>Berry</span><span>Chocolate</span><span>Wine</span>
+          </div>
+          <a href="coffee.html#sidama" class="roast-link">Learn More →</a>
+        </div>
+
+        <div class="roast-card radius" data-animate="card" data-delay="200">
+          <div class="roast-origin">Harrar · Dark Roast</div>
+          <h3 class="roast-name">The Wild</h3>
+          <p class="roast-desc">Dry-processed and sun-dried on raised beds. Expect fruity, complex, almost exotic
+            flavors with a velvety body.</p>
+          <div class="roast-tags">
+            <span>Fruity</span><span>Exotic</span><span>Bold</span>
+          </div>
+          <a href="coffee.html#harrar" class="roast-link">Learn More →</a>
+        </div>
+
+      </div>
+      <div class="section-cta" data-animate="fade-up">
+        <a href="coffee.html" class="btn radius btn-outline">View All Roasts</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: PRODUCT CAROUSEL -->
+  <div id="section7">
+    <div class="carousel-header w-full" data-animate="fade-up">
+      <div class="section-label">Our Offerings</div>
+      <h2 class="heading">Every Cup, A Craft.</h2>
+      <p class="carousel-sub">Hover to pause · discover your roast</p>
+    </div>
+
+    <div class="product-carousel-wrap" id="productCarouselWrap">
+      <div class="product-carousel-track" id="productCarouselTrack">
+
+        <!-- Card 1 -->
+        <div class="pcard radius">
+          <div class="pcard-img-wrap">
+            <img src="./images/lightroast.png" alt="Light Roasted" class="pcard-img" />
+            <div class="pcard-glow"></div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-tag">Yirgacheffe</span>
+            <h3 class="pcard-name">Light Roasted</h3>
+            <p class="pcard-desc">You'll be able to taste full body, some floral notes, bright wine acidity, earthy and
+              mossy.</p>
+            <div class="pcard-footer">
+              <span class="pcard-price">85 ETB</span>
+              <a href="coffee.html" class="pcard-btn">Order →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="pcard radius">
+          <div class="pcard-img-wrap">
+            <img src="./images/lightroast.png" alt="Medium Roasted" class="pcard-img" />
+            <div class="pcard-glow"></div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-tag">Sidama</span>
+            <h3 class="pcard-name">Medium Roasted</h3>
+            <p class="pcard-desc">Rich caramel sweetness, balanced body with notes of dark chocolate and a smooth
+              lingering finish.</p>
+            <div class="pcard-footer">
+              <span class="pcard-price">90 ETB</span>
+              <a href="coffee.html" class="pcard-btn">Order →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="pcard radius">
+          <div class="pcard-img-wrap">
+            <img src="./images/lightroast.png" alt="Dark Roasted" class="pcard-img" />
+            <div class="pcard-glow"></div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-tag">Harrar</span>
+            <h3 class="pcard-name">Dark Roasted</h3>
+            <p class="pcard-desc">Bold and unapologetic — smoky depth, bittersweet cocoa, with a velvety, full-bodied
+              finish.</p>
+            <div class="pcard-footer">
+              <span class="pcard-price">95 ETB</span>
+              <a href="coffee.html" class="pcard-btn">Order →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="pcard radius">
+          <div class="pcard-img-wrap">
+            <img src="./images/lightroast.png" alt="Single Origin" class="pcard-img" />
+            <div class="pcard-glow"></div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-tag">Jimma</span>
+            <h3 class="pcard-name">Single Origin</h3>
+            <p class="pcard-desc">Traceable from a single farm. Expect wild, unblended complexity — nutty, bright and
+              uniquely Ethiopian.</p>
+            <div class="pcard-footer">
+              <span class="pcard-price">100 ETB</span>
+              <a href="coffee.html" class="pcard-btn">Order →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="pcard radius">
+          <div class="pcard-img-wrap">
+            <img src="./images/lightroast.png" alt="Cold Brew Blend" class="pcard-img" />
+            <div class="pcard-glow"></div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-tag">Blend</span>
+            <h3 class="pcard-name">Cold Brew Blend</h3>
+            <p class="pcard-desc">Steeped 16 hours. Smooth, concentrated, naturally sweet — the perfect bold
+              cold-weather companion.</p>
+            <div class="pcard-footer">
+              <span class="pcard-price">105 ETB</span>
+              <a href="coffee.html" class="pcard-btn">Order →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="pcard radius">
+          <div class="pcard-img-wrap">
+            <img src="./images/lightroast.png" alt="Honey Process" class="pcard-img" />
+            <div class="pcard-glow"></div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-tag">Sidama</span>
+            <h3 class="pcard-name">Honey Process</h3>
+            <p class="pcard-desc">Dried with mucilage intact — expect stone fruit sweetness, apricot, and a silky,
+              wine-forward body.</p>
+            <div class="pcard-footer">
+              <span class="pcard-price">110 ETB</span>
+              <a href="coffee.html" class="pcard-btn">Order →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="pcard radius">
+          <div class="pcard-img-wrap">
+            <img src="./images/lightroast.png" alt="Natural Dry" class="pcard-img" />
+            <div class="pcard-glow"></div>
+          </div>
+          <div class="pcard-body">
+            <span class="pcard-tag">Harrar</span>
+            <h3 class="pcard-name">Natural Dry</h3>
+            <p class="pcard-desc">Sun-dried whole cherries produce an intensely fruity, almost fermented character —
+              exotic and bold.</p>
+            <div class="pcard-footer">
+              <span class="pcard-price">115 ETB</span>
+              <a href="coffee.html" class="pcard-btn">Order →</a>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.product-carousel-track -->
+    </div><!-- /.product-carousel-wrap -->
+  </div><!-- /#section7 -->
+
+  <!-- SECTION 6: SLOW DOWN & SIP -->
+  <div id="section6" class="w-full" data-animate="fade-up">
+
+    <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkCN7DVdOuDhl47MkCsp0kxQ7LNYo9VNslgGJvyG89FA-tySF9DXFqLsS2B_Idk6YvsnjkKoNsXmKsleXPOyZM1ZKRj2CgQZl6te803bZoMueO6Y2m4rsvUTcvFa2MlmxPLjD8z=w1200"
+      class="slow-down" alt="Fili Coffee ambiance" />
+
+    <div class="content-wrapper" data-animate="fade-up">
+      <h2 class="heading">Slow Down &amp; Sip</h2>
+      <p>Step into a space where every sip slows time. Fili Coffee is more than a café — it's a ritual. A place to
+        think, feel, and simply be, one cup at a time.</p>
+      <p>From morning espresso to afternoon cold brew, our doors are open for every mood, every moment. Come as you are.
+        Leave transformed.</p>
+      <a href="about.html" class="btn radius" style="margin-top:1.5rem; background:var(--secondary-color);">Our
+        Story</a>
+    </div>
+  </div>
+
+  <!-- ===== GALLERY SECTION ===== -->
+  <section id="gallery-preview" class="w-full">
+    <div class="gallery-header" data-animate="fade-up">
+      <div class="section-label">Captured Moments</div>
+      <h2 class="heading">Gallery</h2>
+    </div>
+
+    <div class="masonry-grid">
+      <div class="masonry-item m-item-1" data-animate="card" data-delay="0">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkCN7DVdOuDhl47MkCsp0kxQ7LNYo9VNslgGJvyG89FA-tySF9DXFqLsS2B_Idk6YvsnjkKoNsXmKsleXPOyZM1ZKRj2CgQZl6te803bZoMueO6Y2m4rsvUTcvFa2MlmxPLjD8z=w1200" alt="Fili Coffee vibes" />
+        <div class="masonry-overlay"><span>☕ Morning Rush</span></div>
+      </div>
+      <div class="masonry-item m-item-2" data-animate="card" data-delay="100">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkIzIbHHZmb5t3Si_AN3qrdZz3nKtDjz-k4s2JBU4oeoH6-0TY0s0t8kEomKSnL7He-__BXYv7Oa2Qrdba7r0kKbCY6_A3ywVZUL7aYvzmj2ymOV8Jghr2kALir2WTyWnpXpwKb=w1200" alt="Coffee craft" />
+        <div class="masonry-overlay"><span>🎨 Latte Art</span></div>
+      </div>
+      <div class="masonry-item m-item-3" data-animate="card" data-delay="200">
+        <img
+          src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWmtZKZdL3diwkydNkx-N8ywtFKvNMxpZ9pV7odY9PhRqxVG0Crncnrt3G2yCBFJ4wfiqmE3WKE8JkjvUsjEtq2tJue1s9q9N0yL9WlOmM6rZGjdkmEX9ypRVMIq2DHiA2NlbpDh=w1200"
+          alt="Fili Coffee Mexico interior" />
+        <div class="masonry-overlay"><span>🪑 Our Space</span></div>
+      </div>
+      <div class="masonry-item m-item-4" data-animate="card" data-delay="300">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWnI2MWDzWlB6BNTg8LtGp-U6r4H2fb9ZT2PebUqj3Y-C_OOhwt_fH4f4UNoGuo-n4RCEHauAutOPL7E8FDWJtb85Qz-cqYX8fKDD3B_NmLFd-_J2YOJYe3j5DeD1PjY71i-Ka7t7Q=w1200" alt="Atmosphere" />
+        <div class="masonry-overlay"><span>✨ The Vibe</span></div>
+      </div>
+      <div class="masonry-item m-item-5" data-animate="card" data-delay="400">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWkvQMuAL2l0s8UllqBRz2SAHitE8aHKVmoRwZGh_tIqTRBIrCWdM8TT-VUQYOlFd9jNuLcCQljRFtnwoyezslz549CDAUUVPSrBkwadjiNNr2oJDsTKkksO4VG5ZBGrLgZOsoq7GA=w1200"
+          alt="Candid moment" />
+        <div class="masonry-overlay"><span>📸 Candid</span></div>
+      </div>
+      <div class="masonry-item m-item-6" data-animate="card" data-delay="500">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHRPTWk_Rg663F6KDM371vKidRnn5yoUoXfLIGg0nsIhMbBHRe5Vq-Iq2Gv7xLuqbcxyw87Urza7Fipr4j64dYTP354ERVsCLbtPjpWvqi_Wmjy3uFPsBhic458JisDziIu3wGZV20Lp=w1200"   alt="Coffee atmosphere" />
+        <div class="masonry-overlay"><span>🌿 Slow Sip</span></div>
+      </div>
+    </div>
+
+    <div class="gallery-cta" data-animate="fade-up">
+      <a href="gallery.html" class="btn radius btn-outline" id="view-gallery-btn">View Full Gallery</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer">
+    <div class="footer-inner">
+      
+      <!-- MIDDLE LINKS GRID -->
+      <div class="footer-middle-grid">
+        <!-- COLUMN 1: Mexico Branch -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">MEXICO BRANCH</h4>
+          <div class="footer-col-content">
+            <p class="location-address">Mexico Area, Addis Ababa,<br>Ethiopia</p>
+            <a href="tel:+251935955598" class="location-phone">+251 93 595 5598</a>
+            <div class="location-hours"><span class="hours-dot"></span> Open Daily · 7:00 AM – 10:00 PM</div>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: Lafto Branch -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">LAFTO BRANCH</h4>
+          <div class="footer-col-content">
+            <p class="location-address">NL-12-4766 Street, Nifas Silk-Lafto,<br>Addis Ababa, Ethiopia</p>
+            <a href="tel:+251911029370" class="location-phone">+251 911 02 93 70</a>
+            <div class="location-hours"><span class="hours-dot"></span> Open Daily · 7:00 AM – 10:00 PM</div>
+          </div>
+        </div>
+
+        <!-- COLUMN 3: CONNECT -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">CONNECT</h4>
+          <ul class="footer-links-list">
+            <li><a href="#" target="_blank">Instagram</a></li>
+            <li><a href="#" target="_blank">TikTok</a></li>
+            <li><a href="#" target="_blank">Facebook</a></li>
+            <li><a href="mailto:cosmictechplc@gmail.com">Email Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- MASSIVE FILI COFFEE TEXT -->
+      <div class="footer-massive-logo">
+        FILI COFFEE
+      </div>
+
+      <hr class="footer-divider" />
+
+      <!-- BOTTOM BAR -->
+      <div class="footer-bottom-row">
+        <div class="bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms &amp; Conditions</a>
+        </div>
+        <div class="bottom-copyright">
+          <span>&copy; 2026 Fili Coffee. All rights reserved.</span>
+          <span class="credit">Crafted with ☕ in Addis Ababa</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.3.20/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script src="main.js"></script>
+</body>
+
 </html>
