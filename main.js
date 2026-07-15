@@ -363,7 +363,7 @@ try {
           const delay = parseInt(el.dataset.delay || '0', 10);
           
           setTimeout(() => {
-            el.classList.remove('js-hide', 'js-hide-fade-up', 'js-hide-card', 'js-hide-heading', 'js-hide-pop');
+            el.classList.remove('js-hide');
             el.classList.add('is-visible');
           }, delay);
           
