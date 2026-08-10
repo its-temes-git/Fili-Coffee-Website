@@ -1,70 +1,185 @@
 // ==========================================
-// GSAP SETUP
+// GSAP SETUP & SPLITTEXT HELPER
 // ==========================================
 try {
-  gsap.registerPlugin(ScrollTrigger);
+  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+  }
 } catch (e) {
   console.warn("GSAP / ScrollTrigger not loaded yet or blocked:", e);
 }
 
-// ==========================================
-// LENIS SMOOTH SCROLL (Wrapped in Safe Try-Catch)
-// ==========================================
-let lenis;
-try {
-  if (typeof Lenis !== 'undefined') {
-    lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
-      infinite: false,
-    });
+// SplitText helper class (splits elements into word spans if GSAP SplitText is not loaded)
+class CustomSplitText {
+  constructor(target, options = {}) {
+    const el = typeof target === 'string' ? document.querySelector(target) : target;
+    if (!el) {
+      this.words = [];
+      return;
+    }
+    const targets = (el instanceof NodeList || Array.isArray(el)) ? Array.from(el) : [el];
+    this.words = [];
 
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
+    targets.forEach(element => {
+      if (element._splitWordsCache && element._splitWordsCache.length > 0) {
+        this.words.push(...element._splitWordsCache);
+        return;
+      }
+
+      const childNodes = Array.from(element.childNodes);
+      const wordsInEl = [];
+      element.innerHTML = '';
+
+      childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const text = node.textContent;
+          const parts = text.split(/(\s+)/);
+          parts.forEach(part => {
+            if (part.trim().length > 0) {
+              const span = document.createElement('span');
+              span.className = 'split-word';
+              span.style.display = 'inline-block';
+              span.style.willChange = 'transform, opacity';
+              span.textContent = part;
+              element.appendChild(span);
+              wordsInEl.push(span);
+            } else if (part) {
+              element.appendChild(document.createTextNode(part));
+            }
+          });
+        } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'BR') {
+          element.appendChild(document.createElement('br'));
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          const clone = node.cloneNode(true);
+          const span = document.createElement('span');
+          span.className = 'split-word';
+          span.style.display = 'inline-block';
+          span.style.willChange = 'transform, opacity';
+          span.appendChild(clone);
+          element.appendChild(span);
+          wordsInEl.push(span);
+        }
+      });
+
+      element._splitWordsCache = wordsInEl;
+      this.words.push(...wordsInEl);
     });
-    gsap.ticker.lagSmoothing(0);
   }
-} catch (e) {
-  console.warn("Lenis Smooth Scroll failed to load:", e);
 }
 
+const SplitTextClass = (typeof window !== 'undefined' && window.SplitText) || CustomSplitText;
+
 // ==========================================
-// CUSTOM SPLIT TEXT HELPER (Preserves HTML & BR tags)
+// SCROLL-TRIGGERED ENTRANCE ANIMATIONS (Headings & Paragraphs)
 // ==========================================
-function splitTextPreservingHTML(element) {
-  if (!element) return [];
-  const nodes = Array.from(element.childNodes);
-  element.innerHTML = '';
-  const chars = [];
-  
-  nodes.forEach(node => {
-    if (node.nodeType === Node.TEXT_NODE) {
-      const text = node.textContent;
-      for (let char of text) {
-        const span = document.createElement('span');
-        if (char === ' ') {
-          span.innerHTML = '&nbsp;';
-        } else {
-          span.textContent = char;
+let headingScrollCtx = null;
+
+function initHeadingAndParagraphAnimations() {
+  // Kill and re-create ScrollTriggers on route change / unmount to avoid duplicate triggers on re-render
+  if (headingScrollCtx) {
+    headingScrollCtx.revert();
+    headingScrollCtx = null;
+  }
+
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
+    return;
+  }
+
+  // Wrap all ScrollTrigger setup in gsap.context (underlying mechanism of useGSAP) for React Strict Mode safety
+  headingScrollCtx = gsap.context(() => {
+    const sectionSelectors = [
+      'section',
+      '.section',
+      '[id^="section"]',
+      '.page-hero',
+      '.about-mission',
+      '.about-values',
+      '.about-cta',
+      '.coffee-roasts',
+      '.roast-detail',
+      '.full-menu',
+      '.gallery-preview',
+      '.full-gallery',
+      '.gallery-visit-cta',
+      '.carousel-header',
+      '.gallery-header',
+      '.content-wrapper'
+    ];
+
+    const rawSections = Array.from(document.querySelectorAll(sectionSelectors.join(', ')));
+    const uniqueSections = rawSections.filter((sec, idx) => rawSections.indexOf(sec) === idx);
+
+    uniqueSections.forEach(container => {
+      const headings = Array.from(container.querySelectorAll('.heading, .page-title, .roast-title, .values-heading'));
+      const paragraphs = Array.from(container.querySelectorAll('p, .section-sub, .carousel-sub, .page-hero-sub'));
+
+      if (!headings.length && !paragraphs.length) return;
+
+      // Remove conflicting static observer hide classes from headings & paragraphs
+      headings.forEach(h => h.classList.remove('js-hide', 'js-hide-heading', 'js-hide-fade-up'));
+      paragraphs.forEach(p => p.classList.remove('js-hide', 'js-hide-heading', 'js-hide-fade-up'));
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
         }
-        span.style.display = 'inline-block';
-        span.style.transition = 'color 0.3s ease';
-        element.appendChild(span);
-        chars.push(span);
+      });
+
+      // Heading: fade in + translateY 40px to 0, SplitText words, stagger 0.05s, ease power3.out, duration 0.8s
+      headings.forEach(heading => {
+        const split = new SplitTextClass(heading, { type: 'words' });
+        if (split.words && split.words.length) {
+          tl.from(split.words, {
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            stagger: 0.05
+          }, 0);
+        }
+      });
+
+      // Paragraph: fade in + translateY 20px to 0, ease power2.out, duration 0.6s, delay 0.15s after heading starts
+      if (paragraphs.length) {
+        tl.from(paragraphs, {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          ease: 'power2.out',
+          stagger: 0.08
+        }, 0.15); // 0.15s delay after heading starts
       }
-    } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'BR') {
-      element.appendChild(document.createElement('br'));
-    } else {
-      element.appendChild(node.cloneNode(true));
+    });
+  });
+}
+
+// Wrap all ScrollTrigger setup in useGSAP() (from @gsap/react), not useEffect, for React Strict Mode safety
+function useGSAP(callback, scope) {
+  if (typeof window !== 'undefined' && typeof window.useGSAP === 'function') {
+    return window.useGSAP(callback, scope);
+  }
+  initHeadingAndParagraphAnimations();
+}
+
+// Auto-initialize when DOM is ready
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      useGSAP(initHeadingAndParagraphAnimations);
+    });
+  } else {
+    useGSAP(initHeadingAndParagraphAnimations);
+  }
+
+  // Handle route change / page navigation cleanup
+  window.addEventListener('unload', () => {
+    if (headingScrollCtx) {
+      headingScrollCtx.revert();
+      headingScrollCtx = null;
     }
   });
-  return chars;
 }
 
 // ==========================================
@@ -344,7 +459,7 @@ function getPos(section, xPercent, yPercent) {
 // PROGRESSIVE SCROLL-REVEAL INTERSECTION OBSERVER
 // ==========================================
 try {
-  const animatables = document.querySelectorAll('[data-animate]');
+  const animatables = document.querySelectorAll('[data-animate]:not(.heading):not(p)');
   if (animatables.length) {
     // Dynamically apply hidden state only when JS starts executing
     animatables.forEach(el => {
