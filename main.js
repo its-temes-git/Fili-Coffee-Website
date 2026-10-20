@@ -575,3 +575,66 @@ try {
 
   track.querySelectorAll(".pcard").forEach(attachCardListeners);
 })();
+
+// ==========================================
+// SKELETON IMAGE LOADING ANIMATION
+// ==========================================
+(function initImageSkeletons() {
+  function setupImageSkeleton(container) {
+    const img = container.querySelector("img");
+    if (!img) return;
+
+    if (img.complete && img.naturalWidth > 0) {
+      container.classList.add("is-loaded");
+      container.classList.remove("skeleton-loading");
+    } else {
+      container.classList.add("skeleton-loading");
+      const markLoaded = () => {
+        container.classList.add("is-loaded");
+        setTimeout(() => {
+          container.classList.remove("skeleton-loading");
+        }, 500);
+      };
+      img.addEventListener("load", markLoaded, { once: true });
+      img.addEventListener("error", markLoaded, { once: true });
+    }
+  }
+
+  function setupStandaloneSkeleton(img) {
+    if (img.complete && img.naturalWidth > 0) {
+      img.classList.add("is-loaded");
+      img.classList.remove("skeleton-standalone");
+    } else {
+      img.classList.add("skeleton-standalone");
+      const markLoaded = () => {
+        img.classList.add("is-loaded");
+        setTimeout(() => {
+          img.classList.remove("skeleton-standalone");
+        }, 500);
+      };
+      img.addEventListener("load", markLoaded, { once: true });
+      img.addEventListener("error", markLoaded, { once: true });
+    }
+  }
+
+  function run() {
+    // Containers
+    const containers = document.querySelectorAll(
+      ".bento-item, .masonry-item, .pcard-img-wrap, .product"
+    );
+    containers.forEach(setupImageSkeleton);
+
+    // Standalone images
+    const standaloneImgs = document.querySelectorAll(
+      "#section4 img, #section6 .slow-down, .page-hero-img img, .photo-strip img"
+    );
+    standaloneImgs.forEach(setupStandaloneSkeleton);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run);
+  } else {
+    run();
+  }
+})();
+
