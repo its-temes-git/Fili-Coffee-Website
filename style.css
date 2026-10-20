@@ -762,8 +762,22 @@ header .btn {
 }
 
 .bottom-copyright .credit {
-  color: rgba(245, 236, 228, 0.35);
+  color: rgba(245, 236, 228, 0.5);
 }
+
+.bottom-copyright .credit a {
+  color: #f5ece4;
+  margin-right: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.bottom-copyright .credit a:hover {
+  color: var(--secondary-color);
+}
+
 
 /* =============================== */
 /* SHARED INNER PAGE STYLES        */
